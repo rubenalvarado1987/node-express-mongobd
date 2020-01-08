@@ -8,20 +8,28 @@ app.use(bodyparser.json());
 
 const mongoose = require('mongoose');
 
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb+srv://serveralvarado:Gsx400..@cluster0-whmwn.mongodb.net/test?retryWrites=true&w=majority';
 
-MongoClient.connect(url, function(err, db) {
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://serveralvarado:Gsx400..@cluster0-whmwn.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("test");
 
-    var cursor = db.collection('test').find();
+  var cursor = collection.find();
 
-    cursor.each(function(err, doc) {
+  cursor.each(function(err, doc) {
 
-        console.log(doc);
+      console.log(doc);
 
-    });
-}); 
+  });
+  // perform actions on the collection object
+  console.log("collection:::",collection);
 
+  
+ 
+
+  client.close();
+});
 
 
 app.get('/', function (req, res) {
