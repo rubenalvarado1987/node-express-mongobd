@@ -11,13 +11,14 @@ app.use(bodyparser.json());
 var router = express.Router();
 var Evento = require('./models/Evento');
 
-mongoose.openUri(bd, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(bd, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 
 
 app.get('/', function (req, res) {
   res.send(app_name + ' running');
+  console.log('mongose:::',mongoose);
 });
 
 app.listen(process.env.PORT, function () {
