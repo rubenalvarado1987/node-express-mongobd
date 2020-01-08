@@ -21,7 +21,7 @@ client.connect(err => {
 
 app.get('/', function (req, res) {
   res.send(app_name + ' running');
-  console.log('mongose:::',mongoose);
+  console.log('runnning APP OK');
 });
 
 app.listen(process.env.PORT, function () {
