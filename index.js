@@ -6,6 +6,8 @@ var app_name = require('./package.json').name + ' app';
 
 app.use(bodyparser.json());
 
+const mongoose = require('mongoose');
+
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://serveralvarado:Gsx400..@cluster0-whmwn.mongodb.net/test?retryWrites=true&w=majority";
@@ -14,6 +16,12 @@ client.connect(err => {
   const collection = client.db("test").collection("devices");
   // perform actions on the collection object
   console.log("collection:::",collection);
+
+  
+  const Cat = mongoose.model('Cat', { name: String });
+
+  const kitty = new Cat({ name: 'Zildjian' });
+  kitty.save().then(() => console.log('meow'));
 
   client.close();
 });
