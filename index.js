@@ -8,23 +8,20 @@ app.use(bodyparser.json());
 
 const mongoose = require('mongoose');
 
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb+srv://serveralvarado:Gsx400..@cluster0-whmwn.mongodb.net/test?retryWrites=true&w=majority';
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://serveralvarado:Gsx400..@cluster0-whmwn.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  console.log("collection:::",collection);
+MongoClient.connect(url, function(err, db) {
 
-  
-  const Cat = mongoose.model('Cat', { name: String });
+    var cursor = db.collection('test').find();
 
-  const kitty = new Cat({ name: 'Zildjian' });
-  kitty.save().then(() => console.log('meow'));
+    cursor.each(function(err, doc) {
 
-  client.close();
-});
+        console.log(doc);
+
+    });
+}); 
+
 
 
 app.get('/', function (req, res) {
