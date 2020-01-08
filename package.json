@@ -8,5 +8,5 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^4.13.20"
   },
-  "bd": "mongodb+srv://demaro:deephouse123@trapi-qhqyo.mongodb.net/tureventobd?retryWrites=true&w=majority"
+  "bd": "mongodb+srv://demaro:deephouse123@trapi-qhqyo.mongodb.net/test?retryWrites=true&w=majority"
 }
