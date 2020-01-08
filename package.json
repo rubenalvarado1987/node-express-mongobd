@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.14.0"
-  }
+    "express": "^4.14.0",
+    "mongoose": "^4.13.20"
+  },
+  "bd" : "mongodb+srv://demaro:deephouse123@trapi-qhqyo.mongodb.net/tureventobd?retryWrites=true&w=majority"
 }
