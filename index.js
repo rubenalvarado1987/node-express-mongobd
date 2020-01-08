@@ -1,24 +1,22 @@
 
 var express = require('express');
-
 var bodyparser = require('body-parser');
 var app = express();
 var app_name = require('./package.json').name + ' app';
-var bd = require('./package.json').bd;
 
 app.use(bodyparser.json());
 
-var router = express.Router();
-var Evento = require('./models/Evento');
 
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://serveralvarado:Gsx400..@cluster0-whmwn.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  console.log("collection:::",collection);
 
-const mongoose = require('mongoose');
-mongoose.connect(bd, {useNewUrlParser: true});
-
-const Cat = mongoose.model('Cat', { name: String });
-
-const kitty = new Cat({ name: 'Zildjian' });
-kitty.save().then(() => console.log('meow'));
+  client.close();
+});
 
 
 app.get('/', function (req, res) {
