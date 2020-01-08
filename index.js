@@ -1,6 +1,6 @@
 
 var express = require('express');
-var mongoose = require('mongoose');
+
 var bodyparser = require('body-parser');
 var app = express();
 var app_name = require('./package.json').name + ' app';
@@ -11,9 +11,14 @@ app.use(bodyparser.json());
 var router = express.Router();
 var Evento = require('./models/Evento');
 
-mongoose.connect(bd, { useNewUrlParser: true, useUnifiedTopology: true });
 
+const mongoose = require('mongoose');
+mongoose.connect(bd, {useNewUrlParser: true});
 
+const Cat = mongoose.model('Cat', { name: String });
+
+const kitty = new Cat({ name: 'Zildjian' });
+kitty.save().then(() => console.log('meow'));
 
 
 app.get('/', function (req, res) {
